@@ -1,0 +1,48 @@
+<div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h2 class="modal-title">Add New Menu Item</h2>
+  
+      <form (ngSubmit)="saveMenuItem()" class="modal-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            [(ngModel)]="menuItem.name"
+            name="name"
+            required
+            placeholder="Enter menu item name"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input
+            type="number"
+            id="price"
+            [(ngModel)]="menuItem.price"
+            name="price"
+            required
+            placeholder="Enter price"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            id="description"
+            [(ngModel)]="menuItem.description"
+            name="description"
+            required
+            placeholder="Enter description"
+          ></textarea>
+        </div>
+  
+        <div class="modal-actions">
+          <button type="submit" class="btn-save">Save</button>
+          <button type="button" class="btn-cancel" (click)="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

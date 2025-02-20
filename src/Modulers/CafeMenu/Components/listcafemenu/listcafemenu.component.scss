@@ -1,0 +1,72 @@
+.menu-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 15px;
+    text-align: center;
+    background-color: #f9f9f9; /* Light background for contrast */
+    border-radius: 10px; /* Rounded corners */
+}
+.add-menu-btn {
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .menu-card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 10px 0;
+    text-align: left;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer; /* Add cursor pointer */
+
+    h3 {
+        margin: 0;
+        font-size: 1.6rem;
+        color: #333;
+        font-family: 'Arial', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    p {
+        font-size: 1rem;
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+
+    .price {
+        display: block;
+        font-weight: bold;
+        font-size: 1.3rem;
+        color: #27ae60;
+        margin-top: 10px;
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+}
+
+
+@media (max-width: 600px) {
+    .menu-container {
+        padding: 10px;
+    }
+
+    .menu-card {
+        padding: 15px;
+    }
+}

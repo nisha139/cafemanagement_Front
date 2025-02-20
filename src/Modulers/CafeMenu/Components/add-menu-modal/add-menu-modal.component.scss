@@ -1,0 +1,160 @@
+/* Overlay Background */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px); /* Subtle blur effect */
+}
+
+/* Modal Container */
+.modal-content {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-out;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Smooth Modal Appearance */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modal Title */
+.modal-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Form Layout */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form Fields */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+/* Input & Textarea Styles */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Input Focus Effect */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+}
+
+/* Textarea Resize */
+.form-group textarea {
+    resize: none;
+    min-height: 80px;
+}
+
+/* Modal Actions */
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+/* Buttons */
+.btn-save,
+.btn-cancel {
+    flex: 1;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    border: none;
+}
+
+/* Save Button */
+.btn-save {
+    background: #007bff;
+    color: white;
+}
+
+.btn-save:hover {
+    background: #0056b3;
+}
+
+.btn-save:active {
+    transform: scale(0.98);
+}
+
+/* Cancel Button */
+.btn-cancel {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.btn-cancel:hover {
+    background: #d6d6d6;
+}
+
+.btn-cancel:active {
+    transform: scale(0.98);
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 95%;
+        padding: 25px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+}

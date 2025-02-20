@@ -1,0 +1,30 @@
+<div class="menu-container">
+  <h2>Cafe Menu</h2>
+  <button class="add-menu-btn" (click)="openModal()">Add More Menu</button>
+  <div *ngIf="menuItems.length > 0; else noMenu">
+    <div
+      class="menu-card"
+      *ngFor="let item of menuItems"
+      (click)="openViewModal(item)"
+    >
+      <h3>{{ item.name }}</h3>
+      <p>{{ item.description }}</p>
+      <span class="price">${{ item.price.toFixed(2) }}</span>
+    </div>
+  </div>
+
+  <ng-template #noMenu>
+    <p>No menu items available.</p>
+  </ng-template>
+</div>
+
+@if(isModalOpen){<app-add-menu-modal
+  (menuAdded)="fetchCafeMenu()"
+  (close)="closeModal()"
+></app-add-menu-modal
+>} @if(isViewModalOpen){<app-view-menu-item
+  [menuItemId]="selectedMenuItemId"
+  (close)="closeViewModal()"
+  (menuUpdated)="handleMenuUpdate()"
+></app-view-menu-item
+>}
