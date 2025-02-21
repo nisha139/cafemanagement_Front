@@ -3,11 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AddMenuModalComponent } from '../add-menu-modal/add-menu-modal.component';
 import { ViewMenuItemComponent } from '../view-menu-item/view-menu-item.component';
+import { DeleteConfirmationComponent } from '../delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-listcafemenu',
   standalone: true,
-  imports: [CommonModule,AddMenuModalComponent,ViewMenuItemComponent],
+  imports: [CommonModule,AddMenuModalComponent,ViewMenuItemComponent,DeleteConfirmationComponent],
   templateUrl: './listcafemenu.component.html',
   styleUrl: './listcafemenu.component.scss',
 })
@@ -15,9 +16,10 @@ export class ListCafeMenuComponent implements OnInit {
   menuItems: any[] = [];
   isModalOpen = false;
   isViewModalOpen = false;
-  selectedMenuItem: any = null;
+  isDeleteModalOpen = false;
   selectedMenuItemId: string = '';
-  apiUrl = 'http://localhost:5165/api/CafeMenu/GetAll';
+  selectedDeleteId: string = '';
+  apiUrl = 'http://localhost:5165/api/CafeMenu';
 
   constructor(private http: HttpClient) {}
 
@@ -26,7 +28,7 @@ export class ListCafeMenuComponent implements OnInit {
   }
 
   fetchCafeMenu(): void {
-    this.http.get<any>(this.apiUrl).subscribe({
+    this.http.get<any>(`${this.apiUrl}/GetAll`).subscribe({
       next: (response) => {
         if (response.success && response.data) {
           this.menuItems = response.data;
@@ -53,8 +55,30 @@ export class ListCafeMenuComponent implements OnInit {
     this.isViewModalOpen = false;
     this.selectedMenuItemId = '';
   }
+
   handleMenuUpdate() {
-    this.fetchCafeMenu(); // Refresh menu list
-    this.closeViewModal(); // Close modal after update
+    this.fetchCafeMenu();
+    this.closeViewModal();
+  }
+
+  openDeleteModal(id: string, event: Event) {
+    event.stopPropagation(); 
+    this.selectedDeleteId = id;
+    this.isDeleteModalOpen = true;
+  }
+
+  closeDeleteModal() {
+    this.isDeleteModalOpen = false;
+    this.selectedDeleteId = '';
+  }
+
+  deleteMenuItem(id: string) {
+    this.http.delete(`${this.apiUrl}/${id}`).subscribe({
+      next: () => {
+        this.fetchCafeMenu();
+        this.closeDeleteModal();
+      },
+      error: (error) => console.error('Error deleting menu:', error),
+    });
   }
 }

@@ -1,23 +1,37 @@
 <div class="modal-overlay">
-    <div class="modal-content">
-      <button class="close-btn" (click)="closeModal()">×</button>
-  
-      <ng-container *ngIf="menuItem; else loading">
-        <h2>
-          <input type="text" [(ngModel)]="menuItem.name" class="editable-input" />
-        </h2>
-        <p>
-          <textarea [(ngModel)]="menuItem.description" class="editable-textarea"></textarea>
-        </p>
-        <span class="price">
-          $<input type="number" [(ngModel)]="menuItem.price" class="editable-input" />
-        </span>
-        <button class="update-btn" (click)="updateMenuItem()">Update</button>
-      </ng-container>
-  
-      <ng-template #loading>
-        <p>Loading menu item...</p>
-      </ng-template>
-    </div>
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeModal()">×</button>
+
+    <ng-container *ngIf="menuItem; else loading">
+      <h2>
+        <input
+          type="text"
+          [(ngModel)]="menuItem.name"
+          class="editable-input title-input"
+          placeholder="Enter menu item name"
+        />
+      </h2>
+      <p>
+        <textarea
+          [(ngModel)]="menuItem.description"
+          class="editable-textarea"
+          placeholder="Enter menu item description"
+        ></textarea>
+      </p>
+      <div class="price-container">
+        <span class="price-label">Price:</span>
+        <input
+          type="number"
+          [(ngModel)]="menuItem.price"
+          class="editable-input price-input"
+          placeholder="0.00"
+        />
+      </div>
+      <button class="update-btn" (click)="updateMenuItem()">Update</button>
+    </ng-container>
+
+    <ng-template #loading>
+      <p class="loading-text">Loading menu item...</p>
+    </ng-template>
   </div>
-  
+</div>
